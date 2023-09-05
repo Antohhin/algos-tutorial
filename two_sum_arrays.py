@@ -50,6 +50,7 @@ def sum_arrays_boost(
 if __name__ == '__main__':
     print(sum_arrays_boost([9], [9, 9, 9]),
           sum_arrays_boost([1, 2, 4], [9, 4, 6]),
-          sum_arrays_boost([1, 6], [4, 6, 4])
+          sum_arrays_boost([1, 6], [4, 6, 4]),
+          sum_arrays_boost([], [1, 2])
           )
     
