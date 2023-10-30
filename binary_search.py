@@ -31,3 +31,6 @@ class Solution:
                 right = mid - 1
         return -1
     
+    
+s = Solution()
+assert(s.search([1, 15, 28, 32, 35, 36, 48], 15) == 1)
