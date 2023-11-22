@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "python-algos"
+name = "leetcode-pattern-problems-techinterview"
 version = "0.1.0"
 description = "Just pattern problems on python3 and more"
 authors = ["Your Name <you@example.com>"]
