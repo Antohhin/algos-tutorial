@@ -6,7 +6,8 @@ An input string is valid if:
 Open brackets must be closed by the same type of brackets.
 Open brackets must be closed in the correct order.
 Every close bracket has a corresponding open bracket of the same type.
- 
+
+Попробовать сделать если нужно от строки отрезать все не буквы, знаки препинания
 
 Example 1:
 
@@ -25,7 +26,7 @@ Output: false
 from icecream import ic
 
 class Solution(object):
-    def isValid(self, s):
+    def is_valid(self, s):
         """
         :type s: str
         :rtype: bool
@@ -61,17 +62,12 @@ valid3 = '{([{}])}'
 s4 = "([)]"
 
 S = Solution()
-ic(S.isValid(valid1))
-ic(S.isValid(valid2))
-ic(S.isValid(valid3))
-ic(S.isValid(s4))
 
-# ic(S.isValid(s3))
-# assert S.isValid(s) == True, ic(S.isValid(s))
-# assert S.isValid(s1) == False, ic(S.isValid(s1))
+assert S.isValid(s) == True, ic(S.isValid(s))
+assert S.isValid(s1) == False, ic(S.isValid(s1))
 
-class Solution(object):
-    def is_valid_bp(self, s):
+class Solution_bp(object):
+    def is_valid(self, s):
         """
         :type s: str
         :rtype: bool
@@ -85,3 +81,9 @@ class Solution(object):
                 if not stack or stack.pop() != my_dict[bracket]: # использовать pop
                     return False
         return not stack            
+
+S = Solution_bp()
+ic(S.is_valid(valid1))
+ic(S.is_valid(valid2))
+ic(S.is_valid(valid3))
+ic(S.is_valid(s4))

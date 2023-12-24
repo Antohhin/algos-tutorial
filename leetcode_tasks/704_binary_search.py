@@ -1,4 +1,6 @@
 """
+https://leetcode.com/problems/binary-search/solutions/
+
 Его величество Binary search
 
 Есть отсортированная коллекция из элментов, найти эл-нт:
@@ -22,7 +24,7 @@ class Solution:
     def search(self, nums: list, target: int) -> int:
         left, right = 0, len(nums) - 1
         while left <= right:
-            mid = (right + left) // 2 # может возникнуть переполнение при больших числах для этого `left + ((right - left) // 2)`
+            mid = (right + left) // 2 # может возникнуть переполнение при больших числах для этого `left + ((right - left) // 2)` из-за знака - вычисления не так велики
             if nums[mid] == target:
                 return mid
             if nums[mid] < target:
@@ -34,3 +36,17 @@ class Solution:
     
 s = Solution()
 assert(s.search([1, 15, 28, 32, 35, 36, 48], 15) == 1)
+
+#повторение
+def binary_search(nums, target) -> int:
+    left, right = 0, len(nums)
+    while left<=right:
+        mid = ((right-left) // 2) + left
+        if target == nums[mid]:
+            return mid
+        elif target < nums[mid]:
+            right = mid - 1
+        else:
+            left = mid + 1        
+    return -1    
+    
