@@ -1,4 +1,5 @@
-
+from collections import defaultdict
+from typing import List
 
 # Способ через сортировку, дольше по времени но проще
 class Solution:
