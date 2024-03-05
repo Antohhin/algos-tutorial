@@ -36,22 +36,36 @@ def topKFrequent(nums: List[int], k: int) -> List[int]:
             # duplicates[nums[idx]] = duplicates.get(nums[idx], 0) + 1
             # dct[key] = dct.get(key, 0) + value
 
+from collections import defaultdict
+
 # Vanya Lipatov's solution
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
         # Vanya Solution
+        # Наполнение словаря key: uniq num, value: count
+        # {4: 1, 3: 2, 2: 1, 1: 2}
         freqs = defaultdict(int) # O(n) memory
         for num in nums:
             freqs[num] += 1
+        # Переворот словаря где value: key
+        # {1: [4, 2], 2: [1, 3]}
         inv_freqs = defaultdict(list) # O(1) memory
         for key, value in freqs.items():
             inv_freqs[value].append(key)
+        # Итерация с конца по ключам
         res = []
         for n in range(len(nums), 0, -1):
+            # n = 6, n = 5, n = 4
+            # {1: [4, 2], 2: [3, 1], 6: [], 5: [], 4: []}
+            # поиск существующих значений из списка
+            # при не совпадении создается пустой список как значение в defaultdict
+            # при совпадении, возвращаются значение (ключи словаря freq)
             for num in inv_freqs[n]:
                 res.append(num)
                 if len(res) == k:
                     return res
 
 nums = [4, 3, 3, 2, 1, 1]
-assert topKFrequent(nums, k=2) == [1, 3] or [3, 1], print(topKFrequent(nums, k=2))
+S = Solution()
+S.topKFrequent(nums, k=2)
+assert S.topKFrequent(nums, k=2) == [1, 3] or [3, 1], print(S.topKFrequent(nums, k=2))
