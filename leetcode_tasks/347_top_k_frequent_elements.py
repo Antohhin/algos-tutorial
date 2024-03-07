@@ -29,12 +29,8 @@ def topKFrequent(nums: List[int], k: int) -> List[int]:
     for key in nums:
         store[key] = store.get(key, 0) + 1
     sorted_store = dict(sorted(store.items(), key = lambda x:x[1]))
+
     return list(sorted_store.keys())[-k:]
-        
-        # if not num in store:
-            # 
-            # duplicates[nums[idx]] = duplicates.get(nums[idx], 0) + 1
-            # dct[key] = dct.get(key, 0) + value
 
 from collections import defaultdict
 
@@ -65,7 +61,22 @@ class Solution:
                 if len(res) == k:
                     return res
 
+# Решение с сортировкой ключей по значениям. без лишнего преобразования list -> dict
+def topKFrequent_speedup(nums: List[int], k: int) -> List[int]:
+    dict = defaultdict(int)
+    for num in nums:
+        #if dict[num] exists then add 1 to it, otherwise assign 0 (default value) + 1 to dict[num]
+        dict[num] = dict.get(num, 0) + 1
+    #creating a list of the keys in descending order based on the values
+    # В lambda конструкции итерация по ключам
+    # , но сортировка по значениям в обратном порядке
+    sorted_list = sorted(dict.keys(), key=lambda x: dict[x], reverse=True)
+
+    return sorted_list[:k]
+
 nums = [4, 3, 3, 2, 1, 1]
 S = Solution()
-S.topKFrequent(nums, k=2)
-assert S.topKFrequent(nums, k=2) == [1, 3] or [3, 1], print(S.topKFrequent(nums, k=2))
+# S.topKFrequent(nums, k=2)
+# assert S.topKFrequent(nums, k=2) == [1, 3] or [3, 1], print(S.topKFrequent(nums, k=2))
+# assert topKFrequent(nums, k=2) == [1, 3] or [3, 1], print(topKFrequent(nums, k=2))
+assert topKFrequent_speedup(nums, k=2) == [1, 3] or [3, 1], print(topKFrequent_speedup(nums, k=2))
