@@ -1,6 +1,5 @@
 """
 Написать аналог random choice с повторами
-
 """
 import random
 
