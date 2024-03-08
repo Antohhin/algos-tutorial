@@ -54,10 +54,11 @@ def sum_arrays_boost(
 def sum_arrays_gpt(arr1: list, arr2: list) -> list:
     "function is summarizing two lists as math sum"
     # Pad the shorter list with zeros
-    max_length = max(len(arr1), len(arr2))
-    arr1 = [0] * (max_length - len(arr1)) + arr1
-    arr2 = [0] * (max_length - len(arr2)) + arr2
-    
+    # [9], [9, 9, 9]
+    max_length = max(len(arr1), len(arr2)) # 3
+    arr1 = [0] * (max_length - len(arr1)) + arr1 # [0] * 2 + [0, 0, 9]
+    arr2 = [0] * (max_length - len(arr2)) + arr2 # [0] * 0 + [9, 9, 9] -> [9, 9, 9]
+    print(arr1, arr2)
     res = []
     carry = 0
     # Iterate over the arrays from right to left
@@ -75,7 +76,7 @@ def sum_arrays_gpt(arr1: list, arr2: list) -> list:
 
 
 if __name__ == '__main__':
-    print(sum_arrays_boost([9], [9, 9, 9]),
+    print(sum_arrays_gpt([9], [9, 9, 9]),
           sum_arrays_boost([1, 2, 4], [9, 4, 6]),
           sum_arrays_boost([1, 6], [4, 6, 4]),
           sum_arrays_boost([], [1, 2])
